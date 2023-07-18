@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import styles from '../styles/index.module.css'; // Import the CSS module
+import styles from '../styles/main.module.css'; // Import the CSS module
 
 const IndexPage = () => {
   const router = useRouter();
@@ -33,17 +33,23 @@ const IndexPage = () => {
   return (
     <div className={styles.container}>
       <div className='background'></div>
-
-      <div className={styles.buttons}>
-        <Link href="/signup" passHref>
-          <button className={styles.button}>Sign Up</button>
-        </Link>
+      <div className={styles.welcome}>Welcome to Linkati</div>
+      <div className={styles.gif}></div>
+      <div className={styles.buttoncontain}>
+       
         <Link href="/login" passHref>
-          <button className={styles.button}>Log In</button>
+          <button className={styles.buttonL}>Log In</button>
         </Link>
-        <button className={styles.button} onClick={handleGoogleSignIn}>Sign Up with Google</button>
-        <button className={styles.button} onClick={handleAppleSignIn}>Sign Up with Apple</button>
+        <Link href="/signup" passHref>
+          <button className={styles.buttonS}>Sign Up</button>
+        </Link>
+        <button className={styles.buttonG} onClick={handleGoogleSignIn}>Sign Up with Google</button>
+        <button className={styles.buttonA} onClick={handleAppleSignIn}>Sign Up with Apple</button>
       </div>
+    
+      <Link href="" passHref>
+          <button className={styles.terms}><u>Terms & Conditions</u></button>
+        </Link>
     </div>
   );
 };

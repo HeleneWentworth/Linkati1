@@ -1,4 +1,6 @@
+/* eslint-disable */
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {} /* eslint-disable */
 
 module.exports = nextConfig

@@ -4,16 +4,17 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/storage';
+import styles from '../styles/main.module.css'; // Import the CSS module
 
-
+// Your Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCUGJqRt3qXZB9HgLfMgB_cvtMGzuT9Tvo",
-  authDomain: "linkati1.firebaseapp.com",
-  projectId: "linkati1",
-  storageBucket: "linkati1.appspot.com",
-  messagingSenderId: "72897008862",
-  appId: "1:72897008862:web:31773705db7fff670a5e4f",
-  measurementId: "G-4T0Y90X9BZ"
+    authDomain: "linkati1.firebaseapp.com",
+    projectId: "linkati1",
+    storageBucket: "linkati1.appspot.com",
+    messagingSenderId: "72897008862",
+    appId: "1:72897008862:web:31773705db7fff670a5e4f",
+    measurementId: "G-4T0Y90X9BZ"
 };
 
 if (!firebase.apps.length) {
@@ -85,70 +86,63 @@ const SignUpPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Sign Up Page</h1>
+    <div className={styles.container}>
+       <div className={styles.register}>Register</div>
+     
       <form onSubmit={handleSignUp}>
         <div>
-          <label>
+          <label className={styles.label}>
             First Name:
             <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
+              type="text" className={styles.name} value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
           </label>
         </div>
         <div>
-          <label>
+          <label className={styles.label}>
             Last Name:
             <input
-              type="text"
+              type="text" className={styles.lastname}
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             />
           </label>
         </div>
         <div>
-          <label>
-            Email:
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+          <label className={styles.label}>
+          Email Address:<input type="email" className={styles.emails} value={email} onChange={(e) => setEmail(e.target.value)}/>
           </label>
         </div>
         <div>
-          <label>
+          <label className={styles.label}>
             Password:
             <input
-              type="password"
+              type="password" className={styles.passwords}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </label>
         </div>
         <div>
-          <label>
+          <label className={styles.label}>
             Phone Number:
             <input
-              type="text"
+              type="text" className={styles.number}
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </label>
         </div>
         <div>
-          <label>
+          <label className={styles.label}>
             Profile Picture:
             <input
-              type="file"
+              type="file" className={styles.picture}
               accept="image/*"
               onChange={handleProfilePictureChange}
             />
           </label>
         </div>
-        <button type="submit">Sign Up</button>
+        <button className={styles.submit} type="submit">Sign Up</button>
       </form>
     </div>
   );
