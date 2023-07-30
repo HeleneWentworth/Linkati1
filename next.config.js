@@ -1,6 +1,9 @@
 /* eslint-disable */
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {} /* eslint-disable */
+const withImages = require('next-images');
 
-module.exports = nextConfig
+module.exports = withImages({
+  images: {
+    domains: ['example.com'], // Add your image domain(s) here
+  },
+});

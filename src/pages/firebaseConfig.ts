@@ -31,6 +31,8 @@ const firebaseConfig = {
   appId: "1:72897008862:web:31773705db7fff670a5e4f",
   measurementId: "G-4T0Y90X9BZ",
   googleWebClientId:"72897008862-k2n3g1ik476s1j88db9vrb78udbed7re.apps.googleusercontent.com"
+
+
 };
 
 if (!firebase.apps.length) {
