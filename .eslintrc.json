@@ -1,3 +1,13 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next",
+  "exclude": [
+    ".eslintrc.js"
+  ],
+  "ignorePatterns": ["index.ts"],
+  "rules": {
+    "object-curly-spacing": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "quotes": "off",
+    "@typescript-eslint/no-unused-vars": "off"
+  }
 }

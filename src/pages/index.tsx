@@ -14,7 +14,7 @@ const firebaseConfig = {
   messagingSenderId: "72897008862",
   appId: "1:72897008862:web:31773705db7fff670a5e4f",
   measurementId: "G-4T0Y90X9BZ",
-    googleWebClientId:"72897008862-k2n3g1ik476s1j88db9vrb78udbed7re.apps.googleusercontent.com"
+  googleWebClientId:"72897008862-k2n3g1ik476s1j88db9vrb78udbed7re.apps.googleusercontent.com"
 };
 
 // Initialize Firebase
@@ -50,10 +50,31 @@ const IndexPage = () => {
     }
   };
 
-  const handleAppleSignIn = () => {
-    // Implement Apple sign-in logic
-    console.log('Signing in with Apple');
+  const handleAppleSignIn = async () => {
+    try {
+      // Check if there's already an authentication popup in progress
+      if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
+        // Wait for the previous popup to complete before proceeding
+        await firebase.auth().signInWithEmailLink(window.location.href);
+        router.push('/main');
+      } else {
+        const provider = new firebase.auth.OAuthProvider('apple.com');
+        await firebase.auth().signInWithPopup(provider);
+        router.push('/main');
+      }
+    } catch (error) {
+      const authError = error as firebase.auth.Error; // Cast the error to the correct type
+  
+      if (authError.code === 'auth/cancelled-popup-request') {
+        // Handle cancellation here
+        console.log('Popup was cancelled by the user.');
+      } else {
+        console.error('Error signing in with Apple', authError);
+      }
+    }
   };
+  
+  
 
   return (
     <div className={styles.container}>

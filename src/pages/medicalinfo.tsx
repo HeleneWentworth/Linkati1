@@ -1,105 +1,63 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import firebaseConfig from '../../firebaseConfig';
-import { useRouter } from 'next/router';
-
-// Initialize Firebase app
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+import styles from '../styles/main.module.css';
+import { useRouter } from 'next/router'; // Import useRouter for navigation
 
 const MedicalInfo: React.FC = () => {
-  const [medicalInfo, setMedicalInfo] = useState({
-    name: '',
-    age: '',
-    condition: '',
-    allergies: '',
-    bloodType: '',
-  });
-
+  const [medicalInfo, setMedicalInfo] = useState<any>(null);
   const auth = firebase.auth();
   const db = firebase.firestore();
-  const router = useRouter();
+  const router = useRouter(); // Use the router for navigation
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setMedicalInfo((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    try {
+  useEffect(() => {
+    const fetchMedicalInfo = async () => {
       const currentUser = auth.currentUser;
       if (currentUser) {
         const userRef = db.collection('users').doc(currentUser.uid);
-
-        await userRef.update({
-          medicalInfo: medicalInfo,
-        });
-
-        console.log('Medical info saved to Firestore');
-        router.push('/main'); // Redirect to the main page
-      } else {
-        console.warn('Current user is not authenticated');
+        const userSnapshot = await userRef.get();
+        if (userSnapshot.exists) {
+          const userData = userSnapshot.data();
+          if (userData && userData.medicalInfo) {
+            setMedicalInfo(userData.medicalInfo);
+          }
+        }
       }
-    } catch (error) {
-      console.error('Error saving medical info to Firestore', error);
-    }
+    };
+    fetchMedicalInfo();
+  }, [auth, db]);
+
+  const handleEditMedicalInfo = () => {
+    router.push('/editmedicalinfo'); // Redirect to edit medical info page
   };
 
+  const handleGoBack = () => {
+    router.push('/main');
+  };
+  
+
   return (
-    <div>
-      <h1>Medical Info Page</h1>
-      <form onSubmit={handleSubmit}>
+    <div className={styles.container}>
+      <div className={styles['med-head']}> Medical Info</div>
+      {medicalInfo ? (
         <div>
-         
+          <p className={styles['allergies']}>Allergies: {medicalInfo.allergies}</p>
+          <p className={styles['blood']}>Blood Type: {medicalInfo.bloodType}</p>
         </div>
-        <div>
-          
-        </div>
-        <div>
-          <label>
-            Condition:
-            <input
-              type="text"
-              name="condition"
-              value={medicalInfo.condition}
-              onChange={handleInputChange}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Allergies:
-            <input
-              type="text"
-              name="allergies"
-              value={medicalInfo.allergies}
-              onChange={handleInputChange}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Blood Type:
-            <input
-              type="text"
-              name="bloodType"
-              value={medicalInfo.bloodType}
-              onChange={handleInputChange}
-            />
-          </label>
-        </div>
-        <button type="submit">Save</button>
-      </form>
+      ) : (
+        <div className={styles['no-info']}>No medical information available</div>
+      )}
+      <button className={styles.editMed} onClick={handleEditMedicalInfo}>Edit Medical Info</button>
+
+      <button className={styles.backBut} onClick={handleGoBack}>Back</button>
+
     </div>
   );
 };
+
+
+
+
 
 export default MedicalInfo;

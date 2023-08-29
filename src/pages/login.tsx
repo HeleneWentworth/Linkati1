@@ -57,9 +57,9 @@ const Login: React.FC = () => {
         {error && <div>{error}</div>}
         <button type="submit" className={styles.submit} >Login</button>
       </form>
-      <Link href="" passHref>
-          <button className={styles.terms}><u>Forgot your password?</u></button>
-        </Link>
+      <Link href="/forgotPassword" passHref>
+  <button className={styles.terms}><u>Forgot your password?</u></button>
+</Link>
 
         <Link href="signup" passHref>
           <button className={styles.terms2}><u>Register a new user?</u></button>

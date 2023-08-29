@@ -4,10 +4,14 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/storage';
+import Link from 'next/link';
 import { FaFacebook, FaTwitter, FaInstagram, FaPlus } from 'react-icons/fa';
 import firebaseConfig from '../../firebaseConfig';
 import styles from '../styles/main.module.css';
 import ShareFacebookButtonPage from '@/components/ShareFacebookButtonPage';
+import Image from 'next/image';
+import { MdLocalHospital } from 'react-icons/md';
+
 
 // Initialize Firebase app
 if (!firebase.apps.length) {
@@ -93,19 +97,13 @@ const MainPage: React.FC = () => {
   const handleLogout = async () => {
     try {
       await auth.signOut();
-      router.push('/login'); // Redirect to login page after logout
+      router.push('/'); 
     } catch (error) {
       console.error('Error logging out', error);
     }
   };
 
-  const handleMedicalInfo = () => {
-    router.push('/medicalinfo'); // Redirect to medical info page
-  };
-
-  const handleEditMedicalInfo = () => {
-    router.push('/editmedicalinfo'); // Redirect to edit medical info page
-  };
+  
 
   const handleEditBio = () => {
     setIsEditingImage(true);
@@ -243,20 +241,22 @@ const MainPage: React.FC = () => {
 
       <div className={styles['picture-container']}>
         {additionalPictureUrl && (
-          <img
-            src={additionalPictureUrl}
-            alt="Additional Picture"
-            className={styles['additional-picture']}
+          <Image src={additionalPictureUrl}
+          alt="Additional Picture"
+          className={styles['additional-picture']} width={500} height={500} 
           />
+        
         )}
 
         <div className={styles['profile-picture']}>
           {profilePictureUrl ? (
-            <img
+            <Image
               src={profilePictureUrl}
               alt="Profile Picture"
               className={styles['profile']}
               onClick={handleEditProfileImage}
+              width={100}  // specify width
+              height={100}
             />
           ) : (
             <div className={styles['no-picture']}>No profile picture available</div>
@@ -274,14 +274,10 @@ const MainPage: React.FC = () => {
         </div>
       </div>
 
-      <div className={styles['logout-button']}>
-        <button onClick={handleLogout}>Logout</button>
-      </div>
-
       <div className={styles['bio-container']}>
   {isEditingImage ? (
     <>
-      <h2>Bio</h2>
+      
       <textarea
         value={bio}
         onChange={handleBioChange}
@@ -294,33 +290,23 @@ const MainPage: React.FC = () => {
     </>
   ) : (
     <>
-      <h2>Bio</h2>
+      <div className={styles['bio-head']}> Bio</div>
       <p>{bio}</p>
-      <button onClick={handleEditBio} className={styles['edit-button']}>
-        Edit Bio
-      </button>
+      <div className={styles['button-container']}>
+  <button onClick={handleEditBio} className={styles['edit-button']}>
+    Edit Bio
+  </button>
+  <button className={styles['edit-button']} onClick={handleEditProfile}>
+    Edit Profile
+  </button>
+</div>
     </>
   )}
+  <Link href="/addsocialmedia" passHref>
+  <button onClick={handleAddSocialMedia} className={styles.shareButton2}></button>  
+    </Link>
 </div>
 
-
-      <div className={styles['medical-info']}>
-        <h2>Medical Info</h2>
-        {medicalInfo ? (
-          <div>
-            <p>Name: {medicalInfo.name}</p>
-            <p>Allergies: {medicalInfo.allergies}</p>
-            <p>Blood Type: {medicalInfo.bloodType}</p>
-          </div>
-        ) : (
-          <div>No medical information available</div>
-        )}
-
-        <div className={styles['medical-buttons']}>
-          <button onClick={handleMedicalInfo}>View Medical Info</button>
-          <button onClick={handleEditMedicalInfo}>Edit Medical Info</button>
-        </div>
-      </div>
 
       {Object.entries(socialMedia).map(([socialMediaId, username]) => (
         <div key={socialMediaId} className={styles['social-media-icon']}>
@@ -341,15 +327,25 @@ const MainPage: React.FC = () => {
         />
       )}
 
-      <div className={styles['edit-profile-button']}>
-        <button onClick={handleEditProfile}>Edit Profile</button>
-      </div>
+<div className="buttonContainer2">
 
-      <div className={styles['add-social-media-button']}>
-        <button onClick={handleAddSocialMedia}>
-          <FaPlus />
-        </button>
-      </div>
+<Link href="/medicalinfo" passHref>
+  <button className={styles.medicalInfoButton}></button>  
+    </Link>
+
+
+<Link href="" passHref>
+  <button onClick={handleAddSocialMedia} className={styles.shareButton}></button>  
+    </Link>
+
+</div>
+
+
+
+
+      <Link href="/" passHref>
+          <button className={styles.buttonLog}>Logout</button>
+        </Link>
     </div>
   );
 };

@@ -91,6 +91,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConfig from '../../firebaseConfig';
 import FacebookLogin, { ReactFacebookLoginInfo } from 'react-facebook-login';
+import styles from '../styles/main.module.css';
 
 interface ShareFacebookButtonPageProps {
   userId: string;
@@ -195,9 +196,13 @@ const ShareFacebookButtonPage: React.FC<ShareFacebookButtonPageProps> = ({
         <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0" nonce="X5JW23s6"></script>
       </Head>
       {isLoggedIn ? (
-        <button onClick={() => shareToFacebook(firebase.auth().currentUser?.getIdToken())}>
-          Share to Facebook
-        </button>
+       
+        
+             <button className={styles.facebook} onClick={() => shareToFacebook(firebase.auth().currentUser?.getIdToken())}>
+              Share to Facebook
+          </button>
+        
+       
       ) : (
         <div
           className="facebook-login-button"

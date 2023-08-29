@@ -5,7 +5,10 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-      
+        <script defer
+            type="text/javascript"
+            src="https://appleid.cdn.apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"
+          />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
 
 

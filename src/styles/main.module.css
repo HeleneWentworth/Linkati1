@@ -57,30 +57,130 @@ border: none;
     }
 
     .profile-picture {
+      margin-top: -20px;
       margin-bottom: 20px;
       width: 100px !important;
       height: 100px !important;
       size:inherit;
+      background:#7EE6F1;
+      border-radius: 100px;
+      background-size: cover;
 
     }
 
-    .logout-button {
+    .buttonLog{
+      margin-top: 40px !important;
+      display: inline-flex;
+width: 165px;
+padding: 10px;
+justify-content: center;
+align-items: center;
+
+border-radius: 11px;
+border:0.5px solid #7EE6F1;
+background: #7EE6F1 !important;
+color: #000000;
+    }
+
+    .editMed{
+      margin-top: 20px !important;
+      margin-bottom: 20px !important;
+    
+width: 165px;
+padding: 10px;
+justify-content: center;
+align-items: center;
+border-radius: 11px;
+border:0.5px solid #7EE6F1;
+background: #7EE6F1 !important;
+color: #000000;
+    }
+
+
+    .button-container {
+      display: flex;
+      justify-content: space-between !important; /* If you want some space between buttons */
+      flex-wrap: wrap; /* This ensures that on very narrow screens, buttons can wrap below each other */
+      width: 350px;
+    }
+    
+    .edit-button {
       margin-top: 20px;
+      flex: 1; /* This makes sure each button takes the available space equally */
+     width: 20% !important;/* Assuming you want a 10px gap between buttons */
+  
+      padding: 10px;
+justify-content: center;
+align-items: center;
+margin-left: 5px;
+margin-right: 5px;
+border-radius: 11px;
+border:0.5px solid #7EE6F1;
+background: #7EE6F1 !important;
+color: #000000;
+    }
+
+    .shareButton{
+      position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden; /* Ensures the image doesn't exceed the circle bounds */
+    background-color: #7EE6F1;
+    margin-left: 0; /* Reset to 0 */
+    margin-top: 200px;
+   display: inline-block;
+    border: none;
+    }
+
+    .shareButton::before{
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-image: url('../assets/share.png');
+      background-size: 50px 50px; /* This will ensure the image is of the size you desire, in this case 50x50px */
+      background-repeat: no-repeat;
+      background-position: center; /* Centers the image */
     }
 
 
-
-    .blood-drop{
-        /* background-image: url(../assets/blood_drop.svg); */
-       border: none;
-       background-color: transparent;
-        background-size: contain;
-        font-size: 3rem; 
-        background-repeat: no-repeat;
-        /* background-color: red; */
-        color: red !important;
+    .medicalInfoButton{
+      position: relative;
+      display: inline-block;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden; /* Ensures the image doesn't exceed the circle bounds */
+    background-color: #7EE6F1;
+    margin-right: 200px; /* Adjust as needed for spacing between buttons */
+    margin-top: 200px;  /* This will affect the top position of both buttons. */
+    margin-bottom: 0;
+    border: none;
     }
 
+
+    .medicalInfoButton::before{
+      content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('../assets/blooddrop.png');
+    background-size: 50px 50px; /* This will ensure the image is of the size you desire, in this case 50x50px */
+    background-repeat: no-repeat;
+    background-position: center; /* Centers the image */
+    }
+
+    .buttonContainer2 {
+      display: flex;
+      justify-content: center; /* This centers the items horizontally */
+      align-items: center;     /* This centers the items vertically */
+      margin-top: -100px;
+  }
     .bigger-icon {
         font-size: 5rem; /* Adjust the font size to your desired value */
       }
@@ -330,7 +430,7 @@ margin-bottom: 50px;
   letter-spacing: 2.1px;
   margin-top: 50px;
   margin-left: -20px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   }
 
 
@@ -366,6 +466,23 @@ background: #FFF;
 margin-bottom: 30px;
 margin-left: 40px;
 border: none;
+}
+
+.bio-input{
+  width: 208px;
+  height: 53px;
+  flex-shrink: 0;
+  border-radius: 11px;
+  background: #FFF;
+  margin-top: 40px;
+  align-items: center;
+  border: none;
+  margin-left: 95px;
+}
+.bio-input::placeholder{
+font-size: 16px;
+text-align: center;
+
 }
 
 
@@ -418,6 +535,19 @@ border: none;
 margin-left: 100px;
 }
 
+.save-button{
+  margin-top: 10px !important;
+  margin-left: 140px;
+width: 125px;
+padding: 10px;
+justify-content: center;
+align-items: center;
+border-radius: 11px;
+border:0.5px solid #7EE6F1;
+background: #7EE6F1 !important;
+color: #000000;
+
+}
 
 .picture{
   width: 308px;
@@ -448,3 +578,324 @@ margin-left: 100px;
   justify-content: center;
   align-items: center;
   }
+
+  .no-picture{
+    font-size: 12px;
+    width: 80px !important;
+    padding-top: 35px !important;
+    padding-left: 9px;
+    justify-content: center;
+    text-align: center;
+
+  }
+
+  .bio-head{
+    flex-direction: column;
+  flex-shrink: 0;
+  color: #FFF !important;
+  font-family: "Jomhuria" !important;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 2.1px;
+  margin-top: 20px !important;
+ 
+  margin-bottom: 50px;
+  text-align: center;
+
+  }
+
+
+
+  .med-head{
+    display: flex;
+    text-align: center;
+flex-direction: column;
+justify-content: center;
+flex-shrink: 0;
+color: #FFF;
+font-family: Jomhuria;
+font-size: 70px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: 2.1px;
+margin-top: 70px;
+margin-bottom: 70px;
+
+  }
+
+
+  .allergies{
+    color: #FFF !important;
+    font-family: "Jomhuria" !important;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 2.1px;
+    margin-top: -30px !important;
+
+    text-align: center;
+  }
+
+
+  .blood{
+    color: #FFF !important;
+    font-family: "Jomhuria" !important;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 2.1px;
+    margin-bottom: 30px;
+    text-align: center;
+    margin-top: -10px !important;
+  }
+
+  .no-info{
+    color: #FFF !important;
+    font-family: "Jomhuria" !important;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 2.1px;
+    margin-bottom: 30px;
+    text-align: center;
+    margin-top: -20px !important;
+  }
+
+  .facebook{
+   
+    height: 40px;
+    width: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    background: #3b5998;
+    margin-bottom: 20px;
+    color: #fff;
+    border-radius: 20px;
+  }
+
+
+  .buttonSave{
+    display: inline-flex;
+    width: 165px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 11px;
+    background: #FFF;
+    border-color: transparent;
+    margin: 50px 20px 20px 20px;
+    text-decoration-line: none !important;
+    margin-left: 115px;
+
+  }
+
+
+  .buttonCancel{
+    display: inline-flex;
+    width: 165px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 11px;
+    background: #7EE6F1;
+    border-color: transparent;
+    margin: 10px 20px 20px 20px;
+    text-decoration-line: none !important;
+    margin-left: 115px;
+  }
+
+
+  
+  .buttonSave:hover{
+    display: inline-flex;
+  width: 165px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 11px;
+  background: transparent;
+  border:0.5px solid #7EE6F1;
+ 
+  text-decoration-line: none !important;
+  color: #fff;
+  }
+
+.buttonCancel:hover{
+  display: inline-flex;
+width: 165px;
+padding: 10px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 11px;
+background: transparent;
+border:0.5px solid #FFF;
+
+text-decoration-line: none !important;
+color: #FFF;
+}
+
+
+.add{
+  flex-direction: column;
+  flex-shrink: 0;
+  color: #FFF;
+  font-family: Jomhuria;
+  font-size: 70px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 2.1px;
+  margin-top: 50px;
+ text-align: center;
+  margin-bottom: 50px;
+}
+
+.socialMediaForm__dropdown {
+  padding: 7px 7px ;
+  width: 145px;
+  border-radius: 5px;
+  border: 1px solid #dcdcdc;
+  font-size: 1em;
+  transition: border 0.2s;
+  appearance: none; /* this is to remove default OS styling on some browsers */
+  background-color: #ffffff;
+  margin-bottom: 20px;
+}
+
+/* Focus state for the dropdown */
+.socialMediaForm__dropdown:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+
+.labeluser{
+  color: #FFF;
+  font-family: Avenir Next;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-right: 20px;
+  margin-left: 40px;
+  margin-top: 40px;
+}
+
+.username1{
+  width: 308px;
+height: 53px;
+flex-shrink: 0;
+border-radius: 11px;
+background: #FFF;
+
+margin-bottom: 30px;
+margin-left: 40px;
+border: none;
+}
+
+
+.backs{
+  flex-direction: column;
+  flex-shrink: 0;
+  color: #FFF;
+  font-family: Jomhuria;
+  font-size: 70px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 2.1px;
+  margin-top: 50px;
+  text-align: center;
+  margin-bottom: 50px;
+  width: 300px;
+}
+
+
+
+
+.backBut{
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+
+width: 165px;
+padding: 10px;
+justify-content: center;
+align-items: center;
+border-radius: 11px;
+border:0.5px solid #7EE6F1;
+background: #7EE6F1 !important;
+color: #000000;
+}
+
+
+
+.shareButton2{
+  position: relative;
+width: 70px;
+height: 70px;
+border-radius: 50%;
+overflow: hidden; /* Ensures the image doesn't exceed the circle bounds */
+background-color: #7EE6F1;
+float: right; /* Reset to 0 */
+margin-top: 20px;
+display: inline-block;
+border: none;
+}
+
+.shareButton2::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url('../assets/plus.png');
+  background-size: 50px 50px; /* This will ensure the image is of the size you desire, in this case 50x50px */
+  background-repeat: no-repeat;
+  background-position: center; /* Centers the image */
+}
+
+
+.information{
+ 
+  flex-direction: column;
+  flex-shrink: 0;
+  color: #FFF;
+  font-family: Jomhuria;
+  font-size: 70px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 2.1px;
+  margin-top: 50px;
+justify-content: center;
+text-align: center;
+  margin-bottom: 30px;
+  width: 300px;
+  }
+
+
+
+.save-button2{
+  margin-top: 10px !important;
+width: 195px;
+padding: 10px;
+justify-content: center;
+align-items: center;
+border-radius: 11px;
+border:0.5px solid #7EE6F1;
+background: #7EE6F1 !important;
+color: #000000;
+
+}

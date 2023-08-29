@@ -1,7 +1,7 @@
-
-/* eslint-disable */
-// module.exports = {
-//   "extends": "next/core-web-vitals"
-// }
-
-
+module.exports = {
+    "extends": "next",
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 2018
+    }
+};

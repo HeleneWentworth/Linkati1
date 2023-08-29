@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+import styles from '../styles/main.module.css'
 
 const socialMediaOptions = [
   { id: 'facebook', name: 'Facebook', icon: FaFacebook },
@@ -29,15 +30,16 @@ const AddSocialMediaPage: React.FC = () => {
 
   return (
     <div>
-      <h1>Add Your Social Media</h1>
+       <div className={styles.container}>
+       <div className={styles.add}>Add Your Social Media</div>
       <div>
-        <label htmlFor="socialMedia">Social Media:</label>
-        <select
+        <label className={styles.label} htmlFor="socialMedia">Social Media:</label>
+        <select className={styles.socialMediaForm__dropdown}
           id="socialMedia"
           value={selectedSocialMedia}
           onChange={(e) => setSelectedSocialMedia(e.target.value)}
         >
-          <option value="">Select Social Media</option>
+          <option value="">Select</option>
           {socialMediaOptions.map((option) => (
             <option key={option.id} value={option.id}>
               {option.name}
@@ -46,18 +48,21 @@ const AddSocialMediaPage: React.FC = () => {
         </select>
       </div>
       <div>
-        <label htmlFor="username">Username:</label>
+        <label className={styles.labeluser} htmlFor="username">Username:</label>
         <input
           type="text"
           id="username"
           value={username}
+          className={styles.username1}
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
       <div>
-        <button onClick={handleSave}>Save</button>
-        <button onClick={handleCancel}>Cancel</button>
+
+        <button className={styles.buttonSave} onClick={handleSave}>Save</button>
+        <button className={styles.buttonCancel} onClick={handleCancel}>Cancel</button>
       </div>
+    </div>
     </div>
   );
 };
